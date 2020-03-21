@@ -6,29 +6,28 @@ casa4=" "; casa5=" "; casa6=" "
 casa1=" "; casa2=" "; casa3=" "
 
 fim=0      ## variável que indica para certos loops que o jogo está encerrado
-quemjoga=0 ## = 1 jogador 1 ||| = 2 jogador 2
+quemjoga=0 ## == 1 jogador 1 ||| == 2 jogador 2
 jogadas=1  ## contador de jogadas
-temcpu=0   ## = 1 caso opção seja humano vs cpu ou cpu vs cpu
-cpucpu=0   ## = 1 caso opção seja cpu vs cpu
+temcpu=0   ## == 1 caso opção seja humano vs cpu ou cpu vs cpu
+cpucpu=0   ## == 1 caso opção seja cpu vs cpu
 
-def opcao(): ## menu do jogo
-    global temcpu
-    global cpucpu
+def menu(): ## menu do jogo
+    global temcpu,cpucpu
     while True:
-        op=input("\nO jogo tem três opções:\n\n [[1]] - Humano VS Humano\n\n [[2]] - Humano VS CPU\n\n [[3]] - CPU VS CPU (modo tédio)\n\n [[4]] - Sair\n\nQual a opção?  ")
-        if op.isdigit() is False:
+        opcao=input("\nO jogo tem três opções:\n\n [[1]] - Humano VS Humano\n\n [[2]] - Humano VS CPU\n\n [[3]] - CPU VS CPU (modo tédio)\n\n [[4]] - Sair\n\nQual a opção?  ")
+        if opcao.isdigit() is False:
             print("\nESCOLHA uma opção!\n")
             continue
-        op=int(op)
-        if op<1 or op>4:
+        opcao=int(opcao)
+        if opcao<1 or opcao>4:
             print("\nOpção inválida! Tente de novo!\n")
             continue
-        if op==4:
+        if opcao==4:
             print("Adiós!")
             quit()
-        if op==1:            temcpu=0; cpucpu=0
-        if op==2:            temcpu=1; cpucpu=0
-        if op==3:            temcpu=1; cpucpu=1            
+        if opcao==1:            temcpu=0; cpucpu=0
+        if opcao==2:            temcpu=1; cpucpu=0
+        if opcao==3:            temcpu=1; cpucpu=1            
         sorteio()
         return
 
@@ -66,11 +65,8 @@ def sorteio():
     return
 
 def jogador1():
-    global quemjoga
-    global jogadas
-    global casa1;    global casa2;    global casa3
-    global casa4;    global casa5;    global casa6
-    global casa7;    global casa8;    global casa9
+    global quemjoga,jogadas
+    global casa1,casa2,casa3,casa4,casa5,casa6,casa7,casa8,casa9
 
     ## gambiarras para verificar qual nomenclatura do jogador 1, humano ou CPU, a fim de indicar se jogou em posição válida ou ocupada
     if cpucpu==0:
@@ -182,11 +178,8 @@ def jogador1():
         return
 
 def jogador2():
-    global quemjoga
-    global jogadas
-    global casa1;    global casa2;    global casa3
-    global casa4;    global casa5;    global casa6
-    global casa7;    global casa8;    global casa9
+    global quemjoga,jogadas
+    global casa1,casa2,casa3,casa4,casa5,casa6,casa7,casa8,casa9
 
     ## gambiarras para verificar qual nomenclatura do jogador 2, humano ou CPU, a fim de indicar se jogou em posição válida ou ocupada    
     if cpucpu==0: ## modo humano vs humano
@@ -357,16 +350,13 @@ def novojogo(): ## caso o jogador queira um novo jogo, as variáveis são reseta
                    print("\nTchau!"); fim=1
                    continue              
                 if novo=="S":
-                    global casa1;    global casa2;    global casa3
-                    global casa4;    global casa5;    global casa6
-                    global casa7;    global casa8;    global casa9
-                    global jogadas;  global quemjoga
-                    global temcpu;   global cpucpu
+                    global casa1,casa2,casa3,casa4,casa5,casa6,casa7,casa8,casa9
+                    global jogadas,quemjoga,temcpu,cpucpu
                     casa7=" "; casa8=" "; casa9=" "
                     casa4=" "; casa5=" "; casa6=" "
                     casa1=" "; casa2=" "; casa3=" "
                     fim=0; quemjoga=0; jogadas=1; temcpu=0; cpucpu=0
-                    opcao()
+                    menu()
                     tabuleiro()
                     verifjogs()
             else:
@@ -635,6 +625,6 @@ print(" "*16, "#"*43)
 print(" "*22, "Desenvolvido por Bruno S. Bauer")
 print(" "*16, "#"*43)
 print("\n\n")
-opcao()
+menu()
 tabuleiro()
 verifjogs()
